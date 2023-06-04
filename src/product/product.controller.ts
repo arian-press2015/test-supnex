@@ -57,6 +57,10 @@ export class ProductController {
     status: 400,
     description: 'product not found',
   })
+  @ApiResponse({
+    status: 404,
+    description: 'product not found',
+  })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
@@ -71,8 +75,11 @@ export class ProductController {
   /** It doesn't allow me to have multiple 400 status codes so I wrote all in one */
   @ApiResponse({
     status: 400,
-    description:
-      'product not found|stock must be a positive number|stock is required',
+    description: 'stock must be a positive number|stock is required',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'product not found',
   })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
@@ -86,7 +93,7 @@ export class ProductController {
     type: BaseProductDto,
   })
   @ApiResponse({
-    status: 400,
+    status: 404,
     description: 'product not found',
   })
   @Delete(':id')

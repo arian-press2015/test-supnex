@@ -2,6 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsNotEmpty, IsPositive, IsString } from 'class-validator';
 
 export class BaseProductDto {
+  _id: string;
+
   @IsNotEmpty({ message: 'name is required' })
   @IsString({ message: 'name must be a string' })
   @ApiProperty({
