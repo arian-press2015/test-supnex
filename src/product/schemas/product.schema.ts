@@ -6,19 +6,28 @@ export type ProductDocument = Product & Document;
 @Schema()
 export class Product {
   @Prop({ required: true })
-  title: string;
-
-  @Prop()
-  description?: string;
-
-  @Prop()
-  completedAt?: Date;
+  name: string;
 
   @Prop({ required: true })
-  createdAt: Date;
+  category: string;
 
-  @Prop()
-  deletedAt?: Date;
+  @Prop({ required: true })
+  unit: string;
+
+  @Prop({ required: true })
+  suppliers: Supplier[];
+
+  @Prop({ required: true })
+  stock: number;
+}
+
+@Schema()
+export class Supplier {
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ required: true })
+  price: number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
